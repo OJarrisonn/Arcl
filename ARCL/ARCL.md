@@ -1,0 +1,1 @@
+ARCL (read as "ARCLE") is a programming language which focus on being dynamic and metaprogrammable but keeping memory safety.

@@ -1,0 +1,48 @@
+ident = @{ ( ASCII_ALPHA | "_" ) ~ ( ASCII_ALPHANUMERIC | "_" )* }
+box_ident = { "&"* ~ ident ~ ("<" ~ ( ident ~ ("," ~ ident)* )? ~ ">")? }
+
+int = @{ ASCII_DIGIT+ }
+float = @{ 
+	ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT* | 
+    ASCII_DIGIT* ~ "." ~ ASCII_DIGIT+ 
+}
+
+string_literal = ${"\"" ~ string ~ "\""}
+string = { char* }
+
+char_literal = ${"'" ~ char ~ "'"}
+char = {
+    !("\"" | "\\") ~ ANY
+    | "\\" ~ ("\"" | "\\" | "/" | "b" | "f" | "n" | "r" | "t")
+    | "\\" ~ ("u" ~ ASCII_HEX_DIGIT{4})
+}
+
+number = _{ int | float }
+
+bin_op = @{
+	"+" | "-" | "*" | "/" | "%" | "&" | "|" | "^" | "&&" | "||"
+}
+
+un_op = @{ 
+	"-" | "!" | "&" | "*"
+}
+
+un_term = { un_op ~ expr }
+
+term = _{ ident | number | "(" ~ expr ~ ")" | un_term }
+
+expr = { term ~ (bin_op ~ term)* | char_literal | string_literal }
+
+decl = {
+	"decl" ~ "pub"? ~ "static"? ~ "const"? ~ (
+    	ident |
+        box_ident ~ ident
+    ) ~ (
+    	( "=" | "->" ) ~ expr?
+    )?
+}
+
+program = { ( decl ~ ";")* }
+
+
+WHITESPACE = _{ " " | "\t" | "\n" }

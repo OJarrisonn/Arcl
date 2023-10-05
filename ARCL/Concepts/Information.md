@@ -1,0 +1,1 @@
+Information in ARCL are values such as: numbers, texts, functions, etc. Every information can be classified using ```types``` and is stored into boxes. And types it self are stored into boxes.

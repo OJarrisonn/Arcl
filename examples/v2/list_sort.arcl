@@ -1,0 +1,9 @@
+main <> {
+    decl var String n;
+    decl var [int] v;
+
+    stdin -> n;
+
+    decl int n = (n.parse:int:<>) ! 0;
+    v = resr 
+};

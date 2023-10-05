@@ -1,0 +1,8 @@
+// decl func<void, ?void> main -> func<void, ?void> () {
+main -> {
+    say();
+};
+
+decl say -> func {
+    std::println("Hello World!");
+};
