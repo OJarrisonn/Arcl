@@ -1,0 +1,4 @@
+main {
+    decl hello = "Hello World";
+    println hello;
+}
