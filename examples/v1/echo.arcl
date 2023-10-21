@@ -1,4 +1,0 @@
-main -> {
-    decl inp = std::readln();
-    std::println(inp);
-};

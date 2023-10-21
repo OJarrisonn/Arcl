@@ -1,0 +1,15 @@
+decl say_welcome = () -> {
+    for i <- 0..10 {
+        println "Welcome";
+    };
+};
+
+main {
+    decl my_name = "Jorge Harrisonn";
+    print "My name is {name}, what is your name? ";
+
+    decl your_name = scan() ! crash "Ops! Failed to read your name";
+    println "Nice to meet you {your_name}. Welcome to ARCL!";
+
+    say_welcome();
+};

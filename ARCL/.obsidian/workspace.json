@@ -8,30 +8,27 @@
         "type": "tabs",
         "children": [
           {
-            "id": "de77860f46e8345b",
+            "id": "6ce4d645635bbb57",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Concepts/Constructions/Constructions.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "graph",
+              "state": {}
             }
           },
           {
-            "id": "5ee066738d62f37c",
+            "id": "f4704bd4694f2199",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Concepts/Declarations/Constants.md",
+                "file": "Expressions.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -97,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Concepts/Constructions/Constructions.md",
+                "file": "Expressions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +111,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Concepts/Constructions/Constructions.md",
+                "file": "Expressions.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +134,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Concepts/Constructions/Constructions.md"
+                "file": "Expressions.md"
               }
             }
           },
@@ -168,13 +165,36 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6c5e80afe385758c",
+  "active": "f4704bd4694f2199",
   "lastOpenFiles": [
+    "Definitions.md",
+    "Declarations.md",
+    "Constructions.md",
+    "Type System/Type Tags.md",
+    "Type System/Primitive Types.md",
+    "Type System/Derivate Types.md",
+    "Type System/Compound Type.md",
+    "Expression System/Function Expressions.md",
+    "Linking.md",
+    "ARCL.md",
+    "Untitled",
+    "Expression System",
+    "Type System/Untitled",
+    "language-configuration.json",
+    "vsc-extension-quickstart.md",
+    "CHANGELOG.md",
+    "README.md",
+    "package.json",
+    "syntaxes/arcl.tmLanguage.json",
+    "syntaxes",
+    "Examples/person/person.arcl",
+    "Examples/person/main.arcl",
+    "Examples/person",
+    "Expressions.md",
+    "Main.md",
+    "Concepts/Constructions/Constructions.md",
     "Concepts/Constructions/Tags.md",
     "Concepts/Declarations/Constants.md",
-    "Concepts/Constructions/Constructions.md",
-    "Concepts/Definitions",
-    "Concepts/Constructions",
     "Concepts/Declarations/Declarations.md",
     "Concepts/Boxes.md",
     "Concepts/Poly-Functions.md",
@@ -182,17 +202,6 @@
     "Concepts/Declarations/Undeclarations.md",
     "Concepts/Declarations/Redeclarations.md",
     "Concepts/Declarations/Functions.md",
-    "Concepts/Declarations/Variables.md",
-    "Concepts/Declarations",
-    "Concepts/Information.md",
-    "Concepts/Constructions.md",
-    "Concepts/Types.md",
-    "Concepts/Operators.md",
-    "Concepts/Pointing.md",
-    "ARCL.md",
-    "Concepts/Seekers.md",
-    "Concepts",
-    "desktop.ini",
-    "Features"
+    "Concepts/Declarations/Variables.md"
   ]
 }

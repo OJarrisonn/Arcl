@@ -1,0 +1,4 @@
+```
+<linkexpr> :=
+| link (<name> ->)? <pathexpr>
+```

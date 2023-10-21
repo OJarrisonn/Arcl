@@ -1,0 +1,1 @@
+Functions are values that receive an input and can return an output. The input is given as a compound

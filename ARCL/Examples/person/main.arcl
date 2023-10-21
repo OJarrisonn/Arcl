@@ -1,0 +1,12 @@
+link ~/person;
+
+main {
+    decl var me = new person::Person("Jorge Harrisonn", 19, 1.81);
+    println `I'm {me}`; // I'm Jorge Harrisonn
+    
+    decl age = me.age;
+    me.age = age + 1; // age is write
+
+    //decl height = me.height; // height isn't read nor write
+    decl height = cast float me;
+};

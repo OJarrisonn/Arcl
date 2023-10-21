@@ -1,0 +1,63 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ARCL",
+	"patterns": [
+		{
+			"include": "#strings"
+		},{
+			"include": "#expressions"
+		},{
+			"include": "#numbers"
+		},{
+			"include": "#control"
+		},{
+			"include": "#derivtypes"
+		},{
+			"include": "#primtypes"
+		}
+	],
+	"repository": {
+		"numbers": {
+			"patterns": [{
+				"name": "constant.numeric",
+				"match": "\\b[0-9]+|([0-9]+.[0-9]*)|([0-9]*.[0-9]+)\\b"
+			}]
+		},
+		"expressions": {
+			"patterns": [{
+				"name": "keyword.operator.arcl",
+				"match": "\\b(decl|cons|defn|link|main|cast|new|resv|uncl|impl|struct|vset|tset|read|wrtie|move|var)\\b"
+			}]
+		},
+		"control": {
+			"patterns": [{
+				"name": "keyword.control.arcl",
+				"match": "\\b(if|else|while|for|loop|stop|next|retn)\\b"
+			}]
+		},
+		"primtypes": {
+			"patterns": [{
+				"name": "keyword.other.arcl",
+				"match": "\\b(int|uint|sint|usint|lint|ulint|xsint|uxsint|xlint|uxlint|char|Str|bool)\\b"
+			}]
+		},
+		"derivtypes": {
+			"patterns": [{
+				"name": "keyword.other.arcl",
+				"match": "\\b((&|@)([a-zA-Z_]+)|([a-zA-Z_]+)(!|#))\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.arcl",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.arcl",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.arcl"
+}
