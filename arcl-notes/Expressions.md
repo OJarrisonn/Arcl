@@ -17,6 +17,6 @@ Some aliases:
 ## Examples
 ```
 link /fs; // A module from the standard library
-link mlog -> ~/util/my_logger; // A module from the current program
+link mlog <- ~/util/my_logger; // A module from the current program
 link external/some_module; // A module from some external library
 ```

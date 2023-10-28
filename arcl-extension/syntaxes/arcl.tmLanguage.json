@@ -3,6 +3,11 @@
 	"name": "ARCL",
 	"patterns": [
 		{
+			"include": "#comments"
+		},
+		{
+			"include": "#formatstrings"
+		},{
 			"include": "#strings"
 		},{
 			"include": "#expressions"
@@ -26,19 +31,19 @@
 		"expressions": {
 			"patterns": [{
 				"name": "keyword.operator.arcl",
-				"match": "\\b(decl|cons|defn|link|main|cast|new|resv|uncl|impl|struct|vset|tset|read|wrtie|move|var)\\b"
+				"match": "\\b(decl|cons|defn|link|main|cast|new|resv|uncl|impl|vset|tset|read|write|move|var|self)\\b"
 			}]
 		},
 		"control": {
 			"patterns": [{
 				"name": "keyword.control.arcl",
-				"match": "\\b(if|else|while|for|loop|stop|next|retn)\\b"
+				"match": "\\b(if|else|while|for|loop|stop|next|retn|slct)\\b"
 			}]
 		},
 		"primtypes": {
 			"patterns": [{
 				"name": "keyword.other.arcl",
-				"match": "\\b(int|uint|sint|usint|lint|ulint|xsint|uxsint|xlint|uxlint|char|Str|bool)\\b"
+				"match": "\\b(int|uint|sint|usint|lint|ulint|xsint|uxsint|xlint|uxlint|char|Str|bool|float|double)\\b"
 			}]
 		},
 		"derivtypes": {
@@ -57,6 +62,24 @@
 					"match": "\\\\."
 				}
 			]
+		},
+		"formatstrings": {
+			"name": "string.quoted.other.arcl",
+			"begin": "`",
+			"end": "`",
+			"patterns": [
+				{
+					"name": "constant.character.escape.arcl",
+					"match": "\\\\."
+				}
+			]
+		},
+		"comments": {
+			"name": "comment.line",
+			"patterns": [{
+				"name": "comment.line",
+				"match": "//.*$"
+			}]
 		}
 	},
 	"scopeName": "source.arcl"

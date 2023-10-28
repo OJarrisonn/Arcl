@@ -1,0 +1,10 @@
+/mnt/e/Documentos/Dev/programs/systems/arcl/arcl-parser/target/debug/deps/pest_generator-321d51836c1428b2.rmeta: /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/lib.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/macros.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/docs.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/generator.rs
+
+/mnt/e/Documentos/Dev/programs/systems/arcl/arcl-parser/target/debug/deps/libpest_generator-321d51836c1428b2.rlib: /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/lib.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/macros.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/docs.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/generator.rs
+
+/mnt/e/Documentos/Dev/programs/systems/arcl/arcl-parser/target/debug/deps/pest_generator-321d51836c1428b2.d: /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/lib.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/macros.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/docs.rs /home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/generator.rs
+
+/home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/lib.rs:
+/home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/macros.rs:
+/home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/docs.rs:
+/home/ojarrisonn_/.cargo/registry/src/index.crates.io-6f17d22bba15001f/pest_generator-2.7.4/src/generator.rs:

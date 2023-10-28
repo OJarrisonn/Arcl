@@ -1,5 +1,11 @@
 ```
-<consexpr> := cons <name> <typespec> <typeimpl>
+<consexpr> := cons <name> :<generics>?: <typespec> <typeimpl>
+```
+# Generics
+If generic types are needed for your type, pass them between ":"
+
+```
+cons Pair : (T) : (T fst, T scd);
 ```
 # Type Specifications
 The specifications are used to set the kind of data your type can store
@@ -24,22 +30,17 @@ Again using ``..``, ``=..``, ``..=`` and ``=..=`` you can create intervals using
 ### Enumerations AKA Value Sets
 A ``vset`` expression let you create a type and define all the possible values using custom literals
 ```
-<vsetexpr> := vset <values>
-<values> := <identifier> | <identifier>, <values>
+<vsetexpr> := vset <compound> | vset <named_compound>
 ```
 ```
-vset Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday
-```
-### Type Sets
-A ``tset`` expression let you create a type that can store values of several types one at a time
-```
-tset int, float, (Str, bool), char?
+vset (Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday)
+vset (int )
 ```
 ## Objects
 Objects in ARCL are just protected named [[Compound Type|compounds]]
 ```
 <objexpr> := < <fields> >
-<fields> := (read|write)? <type> <name> | (read|write)? <type> <name>, <fields>
+<fields> := (read|write)? <type> <name> | <fields>, (read|write)? <type> <name>
 ```
 ## Type Alias
 By giving another type's name as the specification you create an alias
@@ -49,18 +50,17 @@ cons MyInt int;
 # Type Implementation
 Implementations are ways of adding custom behaviour to manipulate the data stored by your type
 ```
-<typeimpl> := impl <sections>
-<sections> := <section> | <section>, <sections>
+<typeimpl> := impl <methods>
+<methods> := <method> | { <method>;* }
 ```
 ## Section
 A section is a piece of the implementation. A section can be associated to a single or to multiple associated functions
 ```
-<section> := <secname> <afuncexpr>
-		   | <secname> [ <afuncarray> ]
-<afuncarray> := <afuncexpr> | <afuncexpr>, <afuncarray>
+<method> := <methname> <afuncexpr>
+		   | <methname> <compound:afuncexpr>
 ```
-## New Section
-The section that defines how a new value of the give type is defined, it can take multiple different functions, but all of them must return the ``Self`` type. The functions defined here will be called when the type is instantiated.
+## New Method
+The method that defines how a new value of the give type is defined, it can take multiple different functions, but all of them must return the ``Self`` type. The functions defined here will be called when the type is instantiated.
 ```
 new self <namedcompound> -> Self <expr:Self>
 ```
