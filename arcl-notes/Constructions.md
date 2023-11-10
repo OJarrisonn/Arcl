@@ -2,10 +2,15 @@
 <consexpr> := cons <name> :<generics>?: <typespec> <typeimpl>
 ```
 # Generics
-If generic types are needed for your type, pass them between ":"
+If generic types are needed for your type, pass them between ":" before the type specification
 
 ```
-cons Pair : (T) : (T fst, T scd);
+cons Pair : T1, T2 : (T1 fst, T2 scd);
+```
+## Tagged Generics
+You also may wish that your generics aren't so generic and that they have some tag
+```
+T <#tag1, tag2, tag3, ...#>
 ```
 # Type Specifications
 The specifications are used to set the kind of data your type can store
@@ -65,8 +70,32 @@ The method that defines how a new value of the give type is defined, it can take
 new self <namedcompound> -> Self <expr:Self>
 ```
 
-## Casting Section
+## Casting Method
 A casting is basicly converting a type into another type using some provided function
 ```
 cast T <expr> // This try to cast the <expr> to the type T
+```
+## Adding Tags
+For a type adquire some tag, it must implement the required functions by that tag
+```
+impl <#tag, tag, ...#> { ... }
+```
+# Calling Methods
+To call a method for an expression, a variable or a constant, just call it using ":"
+```
+cons Pair : T : (T fst, T scd) impl {
+	cast &self () -> [T; 2] [self.fst, self.scd];
+	swap @self () -> () self = (self.scd, self.fst);
+}
+
+main {
+	decl var Pair p = (35, 42);
+	decl [int; 2] a = p:cast();
+	print `{p} -> {a} `;
+	
+	p:swap();
+	println `-> {p}`;
+	 
+	//Saída: (35, 42) -> [35, 42] -> (42, 35)
+}
 ```

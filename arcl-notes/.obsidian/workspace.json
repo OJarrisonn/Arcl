@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ARCL.md",
+                "file": "Constructions.md",
                 "mode": "source",
                 "source": false
               }
@@ -97,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "ARCL.md",
+                "file": "Constructions.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "ARCL.md",
+                "file": "Constructions.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -137,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "ARCL.md"
+                "file": "Constructions.md"
               }
             }
           },
@@ -170,18 +170,19 @@
   },
   "active": "6ce4d645635bbb57",
   "lastOpenFiles": [
+    "Expression System/Function Expressions.md",
     "Constructions.md",
+    "Type System/Type Tags.md",
+    "Type System/Dynamic Types.md",
+    "Declarations.md",
     "ARCL.md",
     "Expressions.md",
-    "Expression System/Function Expressions.md",
     "Type System/Generic Types.md",
     "Type System/Compound Type.md",
     "Type System/Derivate Types.md",
-    "Declarations.md",
     "Definitions.md",
     "Linking.md",
     "Main.md",
-    "Type System/Type Tags.md",
     "Type System/Primitive Types.md",
     "Untitled",
     "Expression System",
@@ -204,7 +205,6 @@
     "Concepts/Poly-Functions.md",
     "Concepts/Definitions.md",
     "Concepts/Declarations/Undeclarations.md",
-    "Concepts/Declarations/Redeclarations.md",
-    "Concepts/Declarations/Functions.md"
+    "Concepts/Declarations/Redeclarations.md"
   ]
 }
