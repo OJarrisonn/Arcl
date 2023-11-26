@@ -1,0 +1,61 @@
+cons Vec #[ T ] 
+    <
+        [T] items, 
+        uzint length, 
+        uzint max_length
+    > 
+    
+    impl #(indexable, addition-ip, lengthed) {
+        meth new 
+            self () -> Self {
+                self.items = [];
+                self.length = 0;
+                self.max_length = 0;
+            },
+            self (T value, uzint length) -> Self {
+                self.items = [value : length]; // An array filled with the given value with the given length
+                self.length = length;
+                self.max_length = length;
+            };
+        
+        meth index // Overides the [] operator for indexing
+            &self (uzint i) -> ^&T {
+                retn &self.items[i];
+            },
+            @self (uzint i) -> ^@T {
+                retn &self.items[i];
+            };
+        
+        meth add-ip @self (T rhs) -> { // Overrides the <+= operator for pushing a new item
+            if self.length == self.max_length {
+                self.max_length *= 2;
+                decl new_items = [: self.max_length];
+
+                self.items.enum (uzint i, T e) -> {
+                    new_items[i] = e;
+                };
+                
+                self.items := new_items;  
+            }
+
+            self.items[self.length] = rhs;
+            self.length += 1;
+        };
+
+        meth length &self () -> uzint self.length; // Overides the | | operator for getting length
+    }
+
+main {
+    decl v = Vec:int:new();
+    v <+= 5;
+    v <+= 10;
+    v <+= 4;
+
+    println cast String |v|; // >>> 3
+    println debg v;
+    // >>> Vec <
+    // >>>     [int] items: [5, 10, 4],
+    // >>>     uzint length: 3,
+    // >>>     uzint max_length: 4
+    // >>> >
+}
