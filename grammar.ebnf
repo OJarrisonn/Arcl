@@ -1,0 +1,33 @@
+<program> ::= <link>* (<decl> | <cons>)* <main>? (<decl> | <cons>)*
+
+<keywords> ::=    "cons" | "decl" | "link" | "main" 
+                | "if" | "else" | "loop" | "impl"
+                | "xtnd" | "null" | "fail" | "retn"
+                | "break" | "continue" | "while" | "var"
+                | "read" | "write" | "self" | "Self"
+                | "pure" | "proc" | "prll" | "crash"
+
+<ident> ::= ([a-z] ([a-z] | [A-Z] | [0-9] | "_" )* ) - <keywords>
+<Ident> ::= [A-Z] ([a-z] | [A-Z] | [0-9] | "_" )*
+
+<link> ::= "link" <path>
+        |  "link" <ident> "=>" <path>
+
+<decl> ::= "decl" "var"? <type>? <ident>
+        |  "decl" "var"? <type>? <ident> (":=" | "=") <expr>
+        |  "decl" "var"? <type>? <ident> "=>" ("&" | "@") <ident>
+
+<cons> ::= "cons" <Ident> <type>
+        |  "cons" <Ident> <typespec> <typeimpl>?
+        |  "xtnd" <type> <typeimpl>
+
+<compound_expr> ::= "(" (<expr> ",")* <expr> ")"
+<compound> ::= "(" (<type> ",")* <type> ")"
+<named_compound> ::= "(" (<type> <ident> ",")* <type> <ident>")"
+<object> ::= "<" (("read" | "write")? <type> <ident> "," )* ("read" | "write")? <type> <ident> ">"
+
+<type> ::= <Ident>
+        |  <compound> | <named_compound> | <object>
+        |  ("?" | "!" | "#" | "...") <type>
+        |  ("&" | "@") <type>
+        |  <type> "<" (<type> ",")* <type> ">"
