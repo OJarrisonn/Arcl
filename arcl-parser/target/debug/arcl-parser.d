@@ -1,0 +1,1 @@
+/mnt/e/Documentos/Dev/programs/systems/arcl/arcl-parser/target/debug/arcl-parser: /mnt/e/Documentos/Dev/programs/systems/arcl/arcl-parser/src/arcl.pest /mnt/e/Documentos/Dev/programs/systems/arcl/arcl-parser/src/main.rs /mnt/e/Documentos/Dev/programs/systems/arcl/arcl-parser/src/parser.rs

@@ -1,0 +1,7 @@
+main {
+    decl var <read String name, write int age, read float height> me = ("Jorge Harrisonn", 19);
+
+    println `My name is ${me.name}, i'm ${me.age} yo and i have ${me.height}m`;
+    me.age = me.age + 1;
+    println `Aged to ${me.age}`; 
+}

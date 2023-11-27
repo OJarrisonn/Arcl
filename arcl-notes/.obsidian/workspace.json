@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Expression System/Function Expressions.md",
+                "file": "Expressions.md",
                 "mode": "source",
                 "source": false
               }
@@ -31,7 +31,8 @@
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -168,7 +169,7 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6ce4d645635bbb57",
+  "active": "f4704bd4694f2199",
   "lastOpenFiles": [
     "Expressions.md",
     "Expression System/Function Expressions.md",
