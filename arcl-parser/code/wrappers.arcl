@@ -1,8 +1,0 @@
-main {
-    decl Vec<int> a = Vec<int>:new();
-    a:push(1);
-    a:push(7);
-    decl int i = a:get 3 ?? -1;
-
-    println `${i}`; 
-};
