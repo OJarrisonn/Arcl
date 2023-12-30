@@ -6,7 +6,7 @@
 decl sum = func (Int a, Int b) -> Int a + b;
 
 decl multi_print = func (String msg, Int times) {
-    (0..times).foreach(func (Int _) {
+    (0..times).foreach(proc (Int _) {
         print `${&msg}`;
     })
 };
