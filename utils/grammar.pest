@@ -46,3 +46,44 @@ pipe_forward = { "|>" }
 
 binary_ops = { plus | minus | times | divide }
 unary_ops = { minus | not}
+
+// Expressions
+
+expr = {
+    clause ~ (pipe_forward ~ clause)?
+}
+
+clause = {
+    subclause ~ (or ~ subclause)?
+}
+
+subclause = {
+    segment ~ (and ~ segment)?
+}
+
+segment = {
+    term ~ ((plus | minus) ~ term)?
+}
+
+term = {
+    factor ~ ((times | divide) ~ factor)?
+}
+
+factor = {
+    unary_ops? ~ (
+        number
+        | string
+        | char
+        | bool
+        | compound_expr
+        | function_call
+        | variable_identifier
+        | constant_identifier
+    ) ~ chain?
+}
+
+compound_expr       = { "(" ~ (expr ~ ",")* ~ expr ~ ")" | "(" ~ ")" | null }
+
+chain = {
+    (compound_accesser | collection_accesser | method_accesser)*
+}
