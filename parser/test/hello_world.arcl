@@ -1,0 +1,4 @@
+main {
+    decl var Int age = 19;
+    print `Your age is ${age}`
+}
