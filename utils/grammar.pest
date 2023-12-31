@@ -1,1 +1,9 @@
 program = {  }
+
+// Identifiers
+
+dontcare = @{"_"}
+variable_identifier = @{"_"? ~ 'a'..'z' ~ ('a'..'z' | '0'..'9' | "_")* }
+constant_identifier = @{"_"? ~ 'A'..'Z' ~ ('A'..'Z' | "_")*}
+type_identifier = @{ 'A'..'Z' ~ ('a'..'z' | 'A..Z' | '0'..'9' | "_")* }
+tag_identifier = @{'a'..'z' ~ ('a'..'z' | "-")*}
