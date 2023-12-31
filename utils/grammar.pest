@@ -102,3 +102,15 @@ type = {
     | primitive_types
     | function_type
 }
+
+compound_type       = { "(" ~ (type ~ ",")* ~ type ~ ")" | "(" ~ ")" | void }
+named_compound_type = { "(" ~ (type ~ variable_identifier ~ ",")* ~ type ~ variable_identifier ~ ")" | "(" ~ ")" | void }
+object_type         = { "{" ~ (("read" | "write")? ~ type ~ variable_identifier ~ ",")* ~ ("read" | "write")? ~ type ~ variable_identifier ~ "}" }
+
+void      = { "Void" }
+primitive_types = { "Int" | "Uint" | "Float" | "Char" | "Bool" }
+
+function_type = { "func" ~ named_compound_type ~ ("->" type)? }
+
+WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
+COMMENT    = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | "//" ~ (!NEWLINE ~ ANY)* }
