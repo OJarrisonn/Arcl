@@ -68,19 +68,19 @@ parcel2 = {
 }
 
 clause = {
-    subclause ~ (or ~ subclause)?
+    subclause ~ (or ~ subclause)*
 }
 
 subclause = {
-    segment ~ (and ~ segment)?
+    segment ~ (and ~ segment)*
 }
 
 segment = {
-    term ~ ((plus | minus) ~ term)?
+    term ~ ((plus | minus) ~ term)*
 }
 
 term = {
-    factor ~ ((times | divide) ~ factor)?
+    factor ~ ((times | divide | modulus) ~ factor)*
 }
 
 factor = {
