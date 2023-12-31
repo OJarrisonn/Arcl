@@ -1,4 +1,11 @@
 main {
     decl var Int age = 19;
-    print `Your age is ${age}`
+    age = 20;
+
+    age >= 15;
+
+    if age >= 21 ? print "Drink"
+     | age >= 18 ? print "Can't drink yet"
+     | age >= 16 ? print "Drive"
+     else print "No rights, shut up kid";
 }
