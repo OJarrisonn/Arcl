@@ -84,15 +84,24 @@ term = {
 }
 
 factor = {
-    unary_ops? ~ (
+    unary_ops* ~ thing
+    | thing ~ (power ~ thing)
+}
+
+thing = {
+    (
         number
         | string
         | char
         | bool
         | compound_expr
+        | function_expr
         | function_call
         | variable_identifier
         | constant_identifier
+        | code
+        | if_expr
+        //| match_expr
     ) ~ chain?
 }
 
