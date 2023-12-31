@@ -87,3 +87,18 @@ compound_expr       = { "(" ~ (expr ~ ",")* ~ expr ~ ")" | "(" ~ ")" | null }
 chain = {
     (compound_accesser | collection_accesser | method_accesser)*
 }
+
+// Types
+
+type_arguments = { "<" ~  type_arguments_types? ~ (";" ~ type_arguments_sizes?)  ~ ">" }
+type_arguments_types = { (type ~ ",")* ~ type }
+type_arguments_sizes = { (unsigned ~ ",")* ~ unsigned }
+
+type = {
+    type_identifier ~ type_arguments?
+    | compound_type
+    | named_compound_type
+    | object_type
+    | primitive_types
+    | function_type
+}
