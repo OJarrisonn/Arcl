@@ -37,15 +37,21 @@ minus   = { "-" }
 times   = { "*" }
 divide  = { "/" }
 power   = { "^" }
+modulus = { "%" }
 
 and     = { "&&" }
 or      = { "||" }
 not     = { "!" }
 
+reference = { read_ref | write_ref | deref}
+read_ref = {"&"}
+write_ref = {"@"}
+deref = {"*"}
+
 pipe_forward = { "|>" }
 
 binary_ops = { plus | minus | times | divide }
-unary_ops = { minus | not}
+unary_ops = { minus | not | reference }
 
 // Expressions
 
