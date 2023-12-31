@@ -7,3 +7,25 @@ variable_identifier = @{"_"? ~ 'a'..'z' ~ ('a'..'z' | '0'..'9' | "_")* }
 constant_identifier = @{"_"? ~ 'A'..'Z' ~ ('A'..'Z' | "_")*}
 type_identifier = @{ 'A'..'Z' ~ ('a'..'z' | 'A..Z' | '0'..'9' | "_")* }
 tag_identifier = @{'a'..'z' ~ ('a'..'z' | "-")*}
+
+// Literals
+
+number  =  { integer | float }
+index   = @{ "0" | ASCII_NONZERO_DIGIT ~ (ASCII_DIGIT)* }
+integer =  { unsigned | decimal | binary | hexadecimal }
+// FIXME: Floats não são reconhecidos
+float       = @{ ASCII_DIGIT* ~ "." ~ ASCII_DIGIT+ | ASCII_DIGIT+ ~ "." ~ ASCII_DIGIT* }
+unsigned    = @{ ASCII_DIGIT ~ (!"." ~ ASCII_DIGIT)* }
+decimal     = @{ "-"? ~ ASCII_DIGIT ~ (!"." ~ ASCII_DIGIT)* }
+binary      = @{ (ASCII_BIN_DIGIT)+ ~ "b" }
+hexadecimal = @{ "0x" ~ (ASCII_HEX_DIGIT)+ }
+
+string         =  { string_literal | template_string }
+string_literal = @{ "\"" ~ (!"\"" ~ ANY)* ~ "\"" }
+
+template_string     = @{ "`" ~ (!"`" ~ (template_expression | ANY))* ~ "`" }
+template_expression = ${ "${" ~ (!"}" ~ expr)* ~ "}" }
+
+char = @{ "'" ~ (!"'" ~ ANY) ~ "'" }
+bool = @{ "true " | "false" | "on" | "off" | "yes" | "no" }
+null =  { "null" }
