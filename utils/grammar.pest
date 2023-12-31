@@ -123,6 +123,10 @@ compound_accesser = @{ "." ~ (unsigned | variable_identifier) }
 collection_accesser = { "[" ~ expr ~ "]" }
 method_accesser = @{ ":" ~ variable_identifier }
 
+if_expr = {
+    "if" ~ expr ~ "=>" ~ expr ~ ("|" ~ expr ~ "=>" ~ expr)* ~ ("else" ~ expr)?
+}
+
 
 // Types
 
