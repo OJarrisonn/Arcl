@@ -119,6 +119,11 @@ chain = {
     (compound_accesser | collection_accesser | method_accesser)*
 }
 
+compound_accesser = @{ "." ~ (unsigned | variable_identifier) }
+collection_accesser = { "[" ~ expr ~ "]" }
+method_accesser = @{ ":" ~ variable_identifier }
+
+
 // Types
 
 type_arguments = { "<" ~  type_arguments_types? ~ (";" ~ type_arguments_sizes?)  ~ ">" }
