@@ -107,6 +107,14 @@ thing = {
 
 compound_expr       = { "(" ~ (expr ~ ",")* ~ expr ~ ")" | "(" ~ ")" | null }
 
+code = {
+    "{" ~ ((expr | statement) ~ ";")* ~ expr ~ "}"
+}
+
+function_expr       = {
+    function_type ~ expr
+}
+
 chain = {
     (compound_accesser | collection_accesser | method_accesser)*
 }
