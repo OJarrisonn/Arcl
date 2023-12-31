@@ -1,12 +1,38 @@
-program = { expr }
+program = { global_decl* ~ main ~ global_decl* }
+
+reserved_words = {
+    primitive_types
+    | bool
+    | null
+    | void
+    | "main"
+    | "decl"
+    | "func"
+    | "if"
+    | "else"
+    | "while"
+    | "read"
+    | "write"
+}
+
+// Global Statements
+
+global_decl = {
+    "decl" ~ type ~ variable_identifier ~ assingment_op
+    | "decl" ~ type ~ constant_identifier ~ assingment_op
+}
+
+main = {
+    "main" ~ expr
+}
 
 // Identifiers
 
 dontcare            = @{ "_" }
-variable_identifier = @{ "_"? ~ 'a'..'z' ~ ('a'..'z' | '0'..'9' | "_")* }
+variable_identifier = @{ !reserved_words ~ "_"? ~ 'a'..'z' ~ ('a'..'z' | '0'..'9' | "_")* }
 constant_identifier = @{ "_"? ~ 'A'..'Z' ~ ('A'..'Z' | "_")* }
-type_identifier     = @{ 'A'..'Z' ~ ('a'..'z' | 'A'..'Z' | '0'..'9' | "_")* }
-tag_identifier      = @{ 'a'..'z' ~ ('a'..'z' | "-")* }
+type_identifier     = @{ !reserved_words ~ 'A'..'Z' ~ ('a'..'z' | 'A'..'Z' | '0'..'9' | "_")* }
+tag_identifier      = @{ !reserved_words ~ 'a'..'z' ~ ('a'..'z' | "-")* }
 
 // Literals
 
@@ -48,6 +74,8 @@ read_ref  = { "&" }
 write_ref = { "@" }
 deref     = { "*" }
 
+cast = { "<$" }
+
 pipe_forward = { "|>" }
 
 binary_ops = { plus | minus | times | divide }
@@ -80,8 +108,8 @@ term = {
 }
 
 factor = {
-    unary_ops* ~ thing
-  | base ~ (power ~ base)
+    unary_ops* ~ base
+  | base ~ (power ~ base)?
 }
 
 base = {
@@ -89,19 +117,27 @@ base = {
 }
 
 thing = {
-    (number | string | char | bool | compound_expr | function_expr | function_call | variable_identifier | constant_identifier | code | if_expr // | match_expr
+    (number | string | char | bool | compound_expr | function_expr | variable_identifier | constant_identifier | code | if_expr // | match_expr
   ) ~ chain?
 }
 
 compound_expr = { "(" ~ (expr ~ ",")* ~ expr ~ ")" | "(" ~ ")" | null }
 
 code = {
-    "{" ~ ((expr | statement) ~ ";")* ~ expr ~ "}"
+    "{" ~ ((expr | statement) ~ ";")* ~ expr? ~ "}"
 }
 
 function_expr = {
-    function_type ~ expr
+    function_signature ~ expr
+    | functional_compound
 }
+
+function_signature = { "func" ~ named_compound_type ~ ("->" ~ type)? }
+
+functional_compound = {
+    "(" ~ ((dontcare | expr) ~ ",")* ~ (dontcare | expr) ~ ")"
+}
+
 
 chain = {
     (compound_accesser | collection_accesser | method_accesser)*
@@ -112,7 +148,7 @@ collection_accesser =  { "[" ~ expr ~ "]" }
 method_accesser     = @{ ":" ~ variable_identifier }
 
 if_expr = {
-    "if" ~ expr ~ "=>" ~ expr ~ ("|" ~ expr ~ "=>" ~ expr)* ~ ("else" ~ expr)?
+    "if" ~ expr ~ "?" ~ expr ~ ("|" ~ expr ~ "?" ~ expr)* ~ ("else" ~ expr)?
 }
 
 // Types
@@ -137,7 +173,23 @@ object_type         = { "{" ~ (("read" | "write")? ~ type ~ variable_identifier 
 void            = { "Void" }
 primitive_types = { "Int" | "Uint" | "Float" | "Char" | "Bool" }
 
-function_type = { "func" ~ named_compound_type ~ ("->" ~ type)? }
+function_type = { "func" ~ compound_type ~ ("->" ~ type)? }
+
+// Statement
+
+statement = { decl | assingment }
+
+decl = {
+    "decl" ~ var? ~ type ~ variable_identifier ~ ("=" ~ expr)?
+    | "decl" ~ type ~ constant_identifier ~ "=" ~ expr
+}
+
+var = { "var" }
+
+// Not recognized alone
+assingment = {
+    base ~ "=" ~ expr
+}
 
 WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
 COMMENT    = _{ ("/*" ~ (!"*/" ~ ANY)* ~ "*/") | "//" ~ (!NEWLINE ~ ANY)* }
