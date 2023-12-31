@@ -56,7 +56,15 @@ unary_ops = { minus | not | reference }
 // Expressions
 
 expr = {
-    clause ~ (pipe_forward ~ clause)?
+    (type ~ cast)?~ parcel
+}
+
+parcel = {
+    parcel2 ~ expr?
+}
+
+parcel2 = {
+    clause ~ (pipe_forward ~ clause)*
 }
 
 clause = {
