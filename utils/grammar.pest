@@ -13,13 +13,20 @@ reserved_words = {
     | "while"
     | "read"
     | "write"
+    | "self"
+    | "Self"
 }
 
 // Global Statements
 
 global_decl = {
-    "decl" ~ type ~ variable_identifier ~ assingment_op
-    | "decl" ~ type ~ constant_identifier ~ assingment_op
+    "decl" ~ type ~ variable_identifier ~ "=" ~ !"=" ~ expr
+    | "decl" ~ type ~ constant_identifier ~ "=" ~ !"=" ~ expr
+}
+
+cons = {
+    "cons" ~ type_identifier ~ type_parameters ~ "=" ~ type ~ impl*
+    | "cons" ~ // TODO: Construct a tag
 }
 
 main = {
@@ -69,6 +76,15 @@ and = { "&&" }
 or  = { "||" }
 not = { "!" }
 
+eq = { "==" }
+neq = { "!=" }
+lt = { "<" ~ !"=" }
+le = { "<=" }
+gt = { ">" ~ !"=" }
+ge = { ">=" }
+
+rel = { eq | neq | le | lt | ge | gt }
+
 reference = { read_ref | write_ref | deref }
 read_ref  = { "&" }
 write_ref = { "@" }
@@ -78,7 +94,7 @@ cast = { "<$" }
 
 pipe_forward = { "|>" }
 
-binary_ops = { plus | minus | times | divide }
+binary_ops = { plus | minus | times | divide | power | modulus | and | or | not }
 unary_ops  = { minus | not | reference }
 
 // Expressions
@@ -96,7 +112,11 @@ clause = {
 }
 
 subclause = {
-    segment ~ (and ~ segment)*
+    relation ~ (and ~ relation)*
+}
+
+relation = {
+    segment ~ (rel ~ segment)*
 }
 
 segment = {
@@ -117,14 +137,18 @@ base = {
 }
 
 thing = {
-    (number | string | char | bool | compound_expr | function_expr | variable_identifier | constant_identifier | code | if_expr // | match_expr
+    (number | string | char | bool | compound_expr | function_expr | prefix_operation | variable_identifier | constant_identifier | code | self_expr | if_expr // | match_expr
   ) ~ chain?
+}
+
+prefix_operation = {
+    binary_ops ~ expr
 }
 
 compound_expr = { "(" ~ (expr ~ ",")* ~ expr ~ ")" | "(" ~ ")" | null }
 
 code = {
-    "{" ~ ((expr | statement) ~ ";")* ~ expr? ~ "}"
+    "{" ~ ((statement | expr) ~ ";")* ~ expr? ~ "}"
 }
 
 function_expr = {
@@ -151,6 +175,8 @@ if_expr = {
     "if" ~ expr ~ "?" ~ expr ~ ("|" ~ expr ~ "?" ~ expr)* ~ ("else" ~ expr)?
 }
 
+self_expr = { "self" }
+
 // Types
 
 type_arguments       = { "<" ~ type_arguments_types? ~ (";" ~ type_arguments_sizes?) ~ ">" }
@@ -164,6 +190,7 @@ type = {
   | object_type
   | primitive_types
   | function_type
+  | self_type
 }
 
 compound_type       = { "(" ~ (type ~ ",")* ~ type ~ ")" | "(" ~ ")" | void }
@@ -175,20 +202,66 @@ primitive_types = { "Int" | "Uint" | "Float" | "Char" | "Bool" }
 
 function_type = { "func" ~ compound_type ~ ("->" ~ type)? }
 
+self_type = { "Self" }
+
+// Construction
+
+type_parameters = {
+    "<" ~ (type_identifier ~ compound_tags? ~ ",")* ~ type_identifier ~ compound_tags? ~ (";" ~ (variable_identifier ~ ",")* ~ variable_identifier)? ~ ">"
+}
+
+// TODO: Specify concrete types for the parameters
+impl = {
+    "impl" ~ compound_tags? ~ impl_body
+}
+
+impl_body = {
+    "{" ~ (method ~ ";") ~ new_method ~ ";" ~ (method ~ ";") ~ "}"
+}
+
+self_borrow = {
+    (read_ref | write_ref)? ~ self_expr
+}
+
+method = {
+    variable_identifier ~ "=" ~ meth
+}
+
+new_method = {
+    "new" ~ "=" ~ new_meth
+}
+
+meth = {
+    "meth" ~ self_borrow ~ function_signature ~ expr
+}
+
+new_meth = {
+    type ~ expr
+}
+
+// Tags
+
+tag = @{"#" ~ tag_identifier}
+
+compound_tags = {
+    tag
+    | "#(" ~ (tag_identifier ~ ",")* ~ tag_identifier ~ ")"
+}
+
 // Statement
 
-statement = { decl | assingment }
+statement = { assingment | decl }
 
 decl = {
-    "decl" ~ var? ~ type ~ variable_identifier ~ ("=" ~ expr)?
-    | "decl" ~ type ~ constant_identifier ~ "=" ~ expr
+    "decl" ~ var? ~ type ~ variable_identifier ~ ("=" ~ !"=" ~ expr)?
+    | "decl" ~ type ~ constant_identifier ~ "=" ~ !"=" ~ expr
 }
 
 var = { "var" }
 
 // Not recognized alone
 assingment = {
-    base ~ "=" ~ expr
+    base ~ "="  ~ !"=" ~ expr
 }
 
 WHITESPACE = _{ " " | "\t" | "\r" | "\n" }
