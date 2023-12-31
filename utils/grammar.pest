@@ -29,3 +29,20 @@ template_expression = ${ "${" ~ (!"}" ~ expr)* ~ "}" }
 char = @{ "'" ~ (!"'" ~ ANY) ~ "'" }
 bool = @{ "true " | "false" | "on" | "off" | "yes" | "no" }
 null =  { "null" }
+
+// Operators
+
+plus    = { "+" }
+minus   = { "-" }
+times   = { "*" }
+divide  = { "/" }
+power   = { "^" }
+
+and     = { "&&" }
+or      = { "||" }
+not     = { "!" }
+
+pipe_forward = { "|>" }
+
+binary_ops = { plus | minus | times | divide }
+unary_ops = { minus | not}
